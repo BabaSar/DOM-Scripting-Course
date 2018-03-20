@@ -19,7 +19,13 @@ form.addEventListener('submit', (event) => {
 function createLI(text){
     //create listItem
     const li = document.createElement('li');
-    li.textContent = text;
+
+    //create span tag to wrap around text
+    const span = document.createElement('span');
+    span.textContent = text;
+
+    //append span to listItem
+    li.appendChild(span);
 
     //create label
     const label = document.createElement('label');
@@ -66,21 +72,29 @@ ul.addEventListener('click', (event) => {
 
     if (event.target.tagName === 'BUTTON'){
         const button = event.target;
+        const li = button.parentNode;
 
         if (button.textContent === 'Remove'){
-            const listItem = button.parentNode;
-            ul.removeChild(listItem);
+            ul.removeChild(li);
         }else{
             if (button.textContent === 'Edit'){
-                //add input field 
+                const span = li.firstElementChild;
                 const textInput = createTextInput();
-                button.parentNode.appendChild(textInput);
-                //clear the li textContent
-                button.parentNode.textContent = '';
+                textInput.value = span.textContent;
+                li.insertBefore(textInput, span);
+                li.removeChild(span);
+         
                 button.textContent = 'Save';
                 
             }else if (button.textContent === 'Save'){
-                
+                const textInput = li.firstElementChild;
+                const text = textInput.value;
+                const span = document.createElement('span');
+                span.textContent = text;
+                li.insertBefore(span, textInput);
+                li.removeChild(textInput)
+
+                console.log(text);
                 button.textContent = 'Edit';
             }
         }
