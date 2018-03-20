@@ -10,7 +10,7 @@ form.addEventListener('submit', (event) => {
     const text = input.value;
     input.value = '';
 
-    const li = createLI();
+    const li = createLI(text);
 
     //append listItem to the parent ul
     ul.appendChild(li);
@@ -76,7 +76,7 @@ ul.addEventListener('click', (event) => {
                 
             }else if (button.textContent === 'Save'){
                 button.textContent = 'Edit';
-                
+
             }
         }
     }
