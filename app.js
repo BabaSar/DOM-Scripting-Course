@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', () => {
 //<form id="registrar">
 const form = document.querySelector('#registrar');
 // const input = document.querySelector('#registrar > input'); better alternative below
@@ -24,15 +25,12 @@ filterCheckbox.addEventListener('change', (event) => {
     const lis = ul.children;
 
     if (isChecked) {
-
-        console.log('show only responded');
         for (let i=0; i<lis.length; i++){
             if (lis[i].className !== 'responded'){
                 lis[i].style.display = 'none';
             }
         }
     }else{
-        console.log('show all');
         for (let i=0; i<lis.length; i++){
             lis[i].style.display = '';
         }
@@ -141,3 +139,5 @@ function createTextInput(){
 
     return textInput;
 }
+})
+
