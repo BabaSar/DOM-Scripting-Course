@@ -3,7 +3,41 @@ const form = document.querySelector('#registrar');
 // const input = document.querySelector('#registrar > input'); better alternative below
     //We can use querySelctor on the form itself, as opposed to on the document. So we get closer to our target
 const input = form.querySelector('input');
+const mainDiv = document.querySelector('div.main');
 const ul = document.querySelector('#invitedList');
+
+
+const div = document.createElement('div');
+const filterLabel = document.createElement('label');
+const filterCheckbox = document.createElement('input');
+
+filterLabel.textContent = 'Show only those who have responded';
+filterCheckbox.type = 'checkbox';
+div.appendChild(filterLabel);
+div.appendChild(filterCheckbox);
+//insert the div before the ul
+mainDiv.insertBefore(div, ul);
+
+//event handler on the filterCheckbox
+filterCheckbox.addEventListener('change', (event) => {
+    const isChecked = event.target.checked;
+    const lis = ul.children;
+
+    if (isChecked) {
+
+        console.log('show only responded');
+        for (let i=0; i<lis.length; i++){
+            if (lis[i].className !== 'responded'){
+                lis[i].style.display = 'none';
+            }
+        }
+    }else{
+        console.log('show all');
+        for (let i=0; i<lis.length; i++){
+            lis[i].style.display = '';
+        }
+    }
+});
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
