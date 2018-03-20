@@ -72,12 +72,24 @@ ul.addEventListener('click', (event) => {
             ul.removeChild(listItem);
         }else{
             if (button.textContent === 'Edit'){
+                //add input field 
+                const textInput = createTextInput();
+                button.parentNode.appendChild(textInput);
+                //clear the li textContent
+                button.parentNode.textContent = '';
                 button.textContent = 'Save';
                 
             }else if (button.textContent === 'Save'){
+                
                 button.textContent = 'Edit';
-
             }
         }
     }
 });
+
+function createTextInput(){
+    const textInput = document.createElement('input');
+    textInput.type = 'text';
+
+    return textInput;
+}
